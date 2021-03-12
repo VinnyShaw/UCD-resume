@@ -61,6 +61,7 @@ function fetchGitHubInformation(event) {
   // When a valid GitHub username is entered, th information will be stored in the variable UserInformationHTML
   // If the username is not valid and returns an error 404, the error message "No info found for user..." will be displayed
   // If there error is not a 404, the error will be console logged then displayed to the user
+  // If there is a 403 error regarding too many requests, then the please wait message will display.
   $.when(
     $.getJSON(`https://api.github.com/users/${username}`),
     $.getJSON(`https://api.github.com/users/${username}/repos`)
@@ -74,6 +75,13 @@ function fetchGitHubInformation(event) {
     function (errorResponse) {
       if (errorResponse.status === 404) {
         $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`);
+      } else if (errorResponse.status === 403) {
+        var resetTime = new Date(
+          errorResponse.getResponseHeader("X-RateLimit-Reset") * 1000
+        );
+        $("#gh-user-data").html(
+          `<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`
+        );
       } else {
         console.log(errorResponse);
         $("#gh-user-data").html(
