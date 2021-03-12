@@ -1,4 +1,4 @@
-// This function returns the users display name, avatar, followers, following and repos.
+// This function returns the users display name, avatar, followers, following and repo list.
 function userInformationHTML(user) {
   return `
         <h2>${user.name}
@@ -39,8 +39,8 @@ function repoInformationHTML(repos) {
 }
 
 // This function checks if there is a username entered in to the text area.
-// If not it asks the user to enter a username
-// It also first clears the user data and repo divs
+// If not it asks the user to enter a username.
+// It also first clears the user data and repo divs.
 function fetchGitHubInformation(event) {
   $("#gh-user-data").html("");
   $("#gh-repo-data").html("");

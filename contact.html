@@ -18,6 +18,20 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale-1" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"
+    ></script>
+    <scripttype="text/javascript"src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <scripttype="text/javascript">
+    (function() {
+    emailjs.init("user_iNNa0H7xnY1MU5uJtZXRX");
+    emailjs.send("gmail", "rosie", {
+      name: "Vinny",
+      notes: "The project that I want is..."
+    })
+    })();
+    </script>
   </head>
 
   <body>
