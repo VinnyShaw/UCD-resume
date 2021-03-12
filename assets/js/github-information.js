@@ -38,8 +38,13 @@ function repoInformationHTML(repos) {
             </div>`;
 }
 
-// This function checks if there is a username entered in to the text area.  If not it asks the user to enter a username
+// This function checks if there is a username entered in to the text area.
+// If not it asks the user to enter a username
+// It also first clears the user data and repo divs
 function fetchGitHubInformation(event) {
+  $("#gh-user-data").html("");
+  $("#gh-repo-data").html("");
+
   var username = $("#gh-username").val();
   if (!username) {
     $("#gh-user-data").html(`<h2>Please enter a GitHub username</h2>`);
@@ -78,3 +83,6 @@ function fetchGitHubInformation(event) {
     }
   );
 }
+
+// This loads the Octocat profile on first page load
+$(document).ready(fetchGitHubInformation);
